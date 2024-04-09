@@ -27,7 +27,7 @@ const callBackForTransferEvent = (eventData: ERC20TransferEvent){
 //......
 //......
 }
-const listeners = ERC20TransferListeners.getInstance(contractAddress, provider);
+const listeners = ERC20TransferListeners.getInstance(listOfERC20Contracts, provider);
 await listeners.start(callBackForTransferEvent);
 
 ```
