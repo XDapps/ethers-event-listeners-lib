@@ -32,7 +32,7 @@ export class ERC20TransferListeners {
 			});
 		}
 	}
-	_setContractListener(contractAddress: string, callback: (event: ERC20TransferEvent) => void) {
+	private _setContractListener(contractAddress: string, callback: (event: ERC20TransferEvent) => void) {
 		const contract = new ethers.Contract(contractAddress, ERC_20_EVENTS, this.ethersProvider);
 		contract.on(contract.filters.Transfer(), (from, to, value, eventObject) => {
 			const event = new ERC20TransferEvent(eventObject);

@@ -33,7 +33,7 @@ export class ERC721TransferListeners {
 			});
 		}
 	}
-	_setContractListener(contractAddress: string, callback: (event: NFT721TransferEvent) => void) {
+	private _setContractListener(contractAddress: string, callback: (event: NFT721TransferEvent) => void) {
 		const contract = new ethers.Contract(contractAddress, ERC_721_EVENTS, this.ethersProvider);
 		contract.on(contract.filters.Transfer(), (from, to, tokenId, eventObject) => {
 			const event = new NFT721TransferEvent(eventObject);

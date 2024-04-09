@@ -24,7 +24,7 @@ export class NFT721TransferEvent {
 		this.txHash = log['transactionHash'];
 	}
 	
-	async formatData(): Promise<Record<string, unknown>> {
+	formatData(): Record<string, unknown> {
 		return {
 			block_number: this.blockNumber,
 			contract_address: this.contractAddress,

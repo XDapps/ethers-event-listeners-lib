@@ -32,7 +32,7 @@ export class ERC1155TransferListeners {
 		}
 	}
 
-	_setContractListener(contractAddress: string, callback: (event: ERC1155TransferSingleEvent) => void) {
+	private _setContractListener(contractAddress: string, callback: (event: ERC1155TransferSingleEvent) => void) {
 		const contract = new ethers.Contract(contractAddress, ERC_1155_EVENTS, this.ethersProvider);
 		contract.on(contract.filters.TransferSingle(), (operator, from, to, id, value, eventObject) => {
 			const event = new ERC1155TransferSingleEvent(eventObject);
