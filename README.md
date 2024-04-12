@@ -32,7 +32,7 @@ await listeners.start(callBackForTransferEvent);
 
 ```
 
-## Pollers for Redundancy
+## Poll for Redundancy
 
 Sometimes, the real time listeners can miss events, it's not common, but for redundancy, I've built back up "pollers" that allow you to go behind the listeners and poll specific block ranges for specific events.
 
