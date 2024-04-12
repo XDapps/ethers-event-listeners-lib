@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import { ERC_721_EVENTS } from "@xdapps/erc-token-utils";
-import { NFT721TransferEvent } from "./NFT721TransferEvent";
+import { ERC721TransferEvent } from "./ERC721TransferEvent";
 
 
 export class ERC721TransferListeners {
@@ -25,7 +25,7 @@ export class ERC721TransferListeners {
 		return ERC721TransferListeners.instance;
 	}
 
-	async start(callback: (event: NFT721TransferEvent) => void): Promise<void> {
+	async start(callback: (event: ERC721TransferEvent) => Promise<unknown>): Promise<void> {
 		if (!this.isRunning) {
 			this.isRunning = true;
 			this.contractAddresses.forEach((address) => {
@@ -33,15 +33,13 @@ export class ERC721TransferListeners {
 			});
 		}
 	}
-	private _setContractListener(contractAddress: string, callback: (event: NFT721TransferEvent) => void) {
+	private _setContractListener(contractAddress: string, callback: (event: ERC721TransferEvent) => Promise<unknown>) {
 		const contract = new ethers.Contract(contractAddress, ERC_721_EVENTS, this.ethersProvider);
 		contract.on(contract.filters.Transfer(), (from, to, tokenId, eventObject) => {
-			const event = new NFT721TransferEvent(eventObject);
+			const event = new ERC721TransferEvent(eventObject);
 			callback(event)
 		});
 	}
-
-
 }
 
 

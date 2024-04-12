@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
-import { ERC1155TransferSingleEvent } from "./ERC1155TransferSingleEvent";
 import { ERC_1155_EVENTS } from "@xdapps/erc-token-utils";
+import { ERC1155TransferSingleEvent } from "./ERC1155TransferSingleEvent";
 
 export class ERC1155TransferListeners {
 	private static instance: ERC1155TransferListeners;
@@ -23,7 +23,7 @@ export class ERC1155TransferListeners {
 		return ERC1155TransferListeners.instance;
 	}
 
-	async start(callback: (event: ERC1155TransferSingleEvent) => void): Promise<void> {
+	async start(callback: (event: ERC1155TransferSingleEvent) => Promise<unknown>): Promise<void> {
 		if (!this.isRunning) {
 			this.isRunning = true;
 			this.contractAddresses.forEach((address) => {
@@ -32,7 +32,7 @@ export class ERC1155TransferListeners {
 		}
 	}
 
-	private _setContractListener(contractAddress: string, callback: (event: ERC1155TransferSingleEvent) => void) {
+	private _setContractListener(contractAddress: string, callback: (event: ERC1155TransferSingleEvent) => Promise<unknown>) {
 		const contract = new ethers.Contract(contractAddress, ERC_1155_EVENTS, this.ethersProvider);
 		contract.on(contract.filters.TransferSingle(), (operator, from, to, id, value, eventObject) => {
 			const event = new ERC1155TransferSingleEvent(eventObject);

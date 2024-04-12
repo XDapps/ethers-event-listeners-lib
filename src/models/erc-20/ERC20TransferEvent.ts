@@ -1,5 +1,4 @@
 import { BigNumber, ethers } from "ethers";
-import { getBlockTimestamp } from "../../utils/getBlockTimestamp";
 import { ERC_20_EVENTS } from "@xdapps/erc-token-utils";
 
 export class ERC20TransferEvent {

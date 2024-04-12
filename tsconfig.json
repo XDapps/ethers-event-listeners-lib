@@ -11,11 +11,16 @@
     "sourceMap": true,                           /* Generates corresponding '.map' file. */
      "outDir": "lib",                              /* Redirect output structure to the directory. */
     "esModuleInterop": true,                      
-     "experimentalDecorators": true,        
+     "experimentalDecorators": true,
     "skipLibCheck": true,                           /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true        /* Disallow inconsistently-cased references to the same file. */
-  }, 
-  "include":[
-    "src"
-    ],
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts"  // Make sure .d.ts files are included
+  ],
+  "typeRoots": [
+    "./node_modules/@types",
+    "./src/types"   // Assuming your global.d.ts is in src/types
+  ]
 }

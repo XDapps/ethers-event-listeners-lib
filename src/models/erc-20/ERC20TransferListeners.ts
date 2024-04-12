@@ -24,7 +24,7 @@ export class ERC20TransferListeners {
 		return ERC20TransferListeners.instance;
 	}
 
-	async start(callback: (event: ERC20TransferEvent) => void): Promise<void> {
+	async start(callback: (event: ERC20TransferEvent) => Promise<unknown>): Promise<void> {
 		if (!this.isRunning) {
 			this.isRunning = true;
 			this.contractAddresses.forEach((address) => {
@@ -32,7 +32,7 @@ export class ERC20TransferListeners {
 			});
 		}
 	}
-	private _setContractListener(contractAddress: string, callback: (event: ERC20TransferEvent) => void) {
+	private _setContractListener(contractAddress: string, callback: (event: ERC20TransferEvent) => Promise<unknown>) {
 		const contract = new ethers.Contract(contractAddress, ERC_20_EVENTS, this.ethersProvider);
 		contract.on(contract.filters.Transfer(), (from, to, value, eventObject) => {
 			const event = new ERC20TransferEvent(eventObject);

@@ -1,7 +1,7 @@
 import { BigNumber, ethers } from 'ethers';
 import { ERC_721_EVENTS } from '@xdapps/erc-token-utils';
 
-export class NFT721TransferEvent {
+export class ERC721TransferEvent {
 	blockNumber: number;
 	contractAddress: string;
 	fromAddress: string;

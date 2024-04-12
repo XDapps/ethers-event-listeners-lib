@@ -31,3 +31,26 @@ const listeners = ERC20TransferListeners.getInstance(listOfERC20Contracts, provi
 await listeners.start(callBackForTransferEvent);
 
 ```
+
+## Pollers for Redundancy
+
+Sometimes, the real time listeners can miss events, it's not common, but for redundancy, I've built back up "pollers" that allow you to go behind the listeners and poll specific block ranges for specific events.
+
+I prefer to have the real time listeners running and then poll every 3-5 minutes to ensure no events are missed.
+
+```ts
+import {ERC20TransferPoller, ERC20TransferEvent} from "@xdapps/ethers-event-listeners-lib";
+
+const contractToPoll = "0x....."; // Address of contract to poll
+const provider = new ethers.providers.JsonRpcProvider("RPC_URL_ADDRESS");
+const lastBlockPolled = 10000;
+const maxBlocksPerPoll = 500;
+
+const callBackForTransferEvent = (eventData: ERC20TransferEvent){
+// Your code to handle the transfer event goes here.....
+//......
+//......
+}
+const poller = new ERC20TransferPoller(contractToPoll, lastBlockPolled, maxBlocksPerPoll);
+await poller.pollBlocks(provider, callBackForTransferEvent);
+```
