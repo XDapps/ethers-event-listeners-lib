@@ -1,6 +1,6 @@
 {
   "name": "@xdapps/ethers-event-listeners-lib",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Basic event listener library for ERC-20, ERC-721, and ERC-1155 Transfer events using Ethers.js",
   "main": "index.js",
   "scripts": {

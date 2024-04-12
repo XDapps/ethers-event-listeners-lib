@@ -10,13 +10,13 @@ This is a basic wrapper around Ethers.js with static methods for listening to tr
 
 ### How To Use
 
-```js
+```shell
 npm install @xdapps/ethers-event-listeners-lib
 or
 yarn add @xdapps/ethers-event-listeners-lib
 ```
 
-```js
+```ts
 import {ERC20TransferListeners, ERC20TransferEvent} from "@xdapps/ethers-event-listeners-lib";
 
 const listOfERC20Contracts = ["0x.....", "0x...."]; // List of contracts to listen to
